@@ -3,22 +3,30 @@
   <head>
     <meta charset="UTF-8" />
    <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
+    <!-- To Go Live Type "npm run dev" in terminal /> -->
     <link rel="stylesheet" href="index.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My TypeScript Project</title>
   </head>
   <body>
-    <main class="bg-[url('/images/Old-Man.png')] bg-cover h-screen w-screen">
+    <main class="flex flex-col bg-[url('/images/Old-Man.png')] bg-cover h-screen w-screen">
       <header>
       <h1>Welcome to my TypeScript project!</h1>
       </header>
-      <div>
-        <img src="images/Thumb-up-in-pain.png" alt="Thumb up in pain" />
+      <div class="mx-auto lg:flex">
+        <img class="max-w-md rounded-lg" src="images/img-snowyMountain.jpeg" alt="Thumb up in pain" />
+        <div class="rounded-2xl bg-gray-100 p-4 opacity-90 max-w-4xl">
+          <h2 class="text-4xl text-black-200 font-bold">What is TypeScript?</h2>
+          <p calss="text-lg">
+            TypeScript is a superset of JavaScript that adds types to your code.
+          </p>
+          <button class="bg-gray-500 rounded-md m-2  max-w-32 px-2 "> Get Started!</button>
+        </div>
       </div>
-      <button> Get Started!</button>
-      <footer>
+      
+      <footer class="text-center text-lg mt-auto mb-4">
         <p>
-        Made With Love
+        Made With <span></span> by <a href="https://github.com/">Taylor</a>
         </p>
       </footer>
     </main>

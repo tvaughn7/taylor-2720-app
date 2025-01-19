@@ -3,10 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../index.css">
     <title>Basic TypeCript Types</title>
     <script src="basic-types.ts" defer type="module"></script>
 </head>
-<body>
+<body class="flex flex-col h-screen">
+    <header class="bg-gray-700 text-4xl text-white">
     <h1>Basic TypeScript Types</h1>
+    </header>
+    <main class="flex bg-gray-300 h-full w-full">
+        <nav class="bg-gray-400 max-w-40 h-full">
+            <ul>
+                <li>
+                    <button class="w-32 border rounded-lg hover:bg-gray-300">Basic Types</button>
+                </li>
+                <li>
+                    <button>Array Types</button>
+                </li>
+                <li>
+                    <button>Special Types</button>
+                </li>
+            </ul>
+        </nav>
+        <div class="flex flex-col bg-gray-500 w-full text-white">
+                <h3>Card Title</h3>
+                <p>Concept Explanation</p>
+                <div>
+                    <h4>Code Example</h4>
+                    <pre>
+                    <code>
+const myName: string = "Taylor";
+                    </code>
+                </pre>
+                </div>
+        </div>
+    </main>
+    <footer class ="mt-auto">
+        <p> &copy; 2025</p>
+    </footer>
 </body>
 </html>

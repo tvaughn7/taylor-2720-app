@@ -12,6 +12,7 @@ export default defineConfig({
         roolupOptions: {
             input:{
                 main: resolve(root, 'index.html'),
+                baseicTypes: resolve(root, 'basicTypes', 'index.html'),
                 // nested: resolve(root, 'nested/index.html'),
             },
             

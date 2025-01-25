@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,30 +12,32 @@
     <h1>Basic TypeScript Types</h1>
     </header>
     <main class="flex bg-gray-300 h-full w-full">
-        <nav class="bg-gray-400 max-w-40 h-full">
-            <ul>
+        <nav class="bg-gray-400 w-48 text-center h-full">
+            <ul class="m-2 space-y-2">
                 <li>
-                    <button class="w-32 border rounded-lg hover:bg-gray-300">Basic Types</button>
+                    <button class="btn btn-primary">Basic Types</button>
                 </li>
                 <li>
-                    <button class="w-32 border rounded-lg hover:bg-gray-300">Array Types</button>
+                    <button class="btn btn-secondary">Array Types</button>
                 </li>
                 <li>
-                    <button class="w-32 border rounded-lg hover:bg-gray-300">Special Types</button>
+                    <button class="btn btn-accent">Special Types</button>
                 </li>
             </ul>
         </nav>
-        <div class="flex flex-col bg-gray-500 w-full text-white">
-                <h3>Card Title</h3>
-                <p>Concept Explanation</p>
-                <div>
-                    <h4>Code Example</h4>
+        <div class="card bg-base-100 w-96 shadow-xl h-96">
+            <div class="card-body">
+                    <h2 class="card-title">Code Example</h2>
+                    <div class="mockup-code">
                     <pre>
                     <code>
 const myName: string = "Taylor";
+const myAge: number = "25";
+const myAge: number = "25";
                     </code>
                 </pre>
                 </div>
+            </div>
         </div>
     </main>
     <footer class ="mt-auto">

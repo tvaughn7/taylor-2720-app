@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../index.css">
+    <link rel="stylesheet" href="../styles/obsidian.css">
     <title>Basic TypeCript Types</title>
-    <script src="basic-types.ts" defer type="module"></script>
+    <script src="index.ts" defer type="module"></script>
 </head>
 <body class="flex flex-col h-screen">
     <header class="bg-gray-700 text-4xl text-white">
@@ -15,22 +16,25 @@
         <nav class="bg-gray-400 w-48 text-center h-full">
             <ul class="m-2 space-y-2">
                 <li>
-                    <button class="btn btn-primary">Basic Types</button>
+                    <button type="button" id="basicTypesButton" class="btn btn-primary">Basic Types</button>
                 </li>
                 <li>
-                    <button class="btn btn-secondary">Array Types</button>
+                    <button type="button" id="arrayTypesButton" class="btn btn-secondary">Array Types</button>
                 </li>
                 <li>
-                    <button class="btn btn-accent">Special Types</button>
+                    <button type="button" id="specialTypesButton" class="btn btn-accent">Special Types</button>
                 </li>
             </ul>
         </nav>
-        <div class="card bg-base-100 w-96 shadow-xl h-96">
-            <div class="card-body">
+        <div class="card bg-base-100">
+            <div class="card-body flex-grow-0">
                     <h2 class="card-title">Code Example</h2>
-                    <div class="mockup-code">
+                    <p class="cardExplanation"></p>
+                    <div class="bg-base-content px-4 rounded-lg">
+                        <pre class=" text-slate-200">
+                            <code id="cardCode">
                     <pre>
-                    <code>
+                    <code id="cardCode">
 const myName: string = "Taylor";
 const myAge: number = "25";
 const myAge: number = "25";

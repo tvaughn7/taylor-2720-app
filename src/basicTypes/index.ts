@@ -1,4 +1,4 @@
-import { basicTypesNumber, basicTypesString, arrayTypesExample, specialTypesExample } from "../examples/examples";
+import { basicTypesNumber, basicTypesString, arrayTypes, specialTypes, basicTypesBoolean, tupleTypes } from "../examples/examples";
 import hljs from 'highlight.js/lib/core';
 import typescript from 'highlight.js/lib/languages/typescript';
 
@@ -16,16 +16,27 @@ const cardExplanation = document.querySelector('.cardExplanation');
 const cardCode = document.querySelector('#cardCode');
 
 // Add event listeners to the buttons
+
 if (basicTypesButton) {
-    basicTypesButton.addEventListener('click', () => loadExample("basic"))
+    const examples = [
+        basicTypesNumber(),
+        basicTypesString(),
+        basicTypesBoolean()
+    ]     
+    basicTypesButton.addEventListener('click', () => loadExamples(examples))
 }
 
 if (arrayTypesButton) {
-    arrayTypesButton.addEventListener('click', () => loadExample("array"))
+    const arrayExamples = [
+        arrayTypes(),
+        tupleTypes()
+
+    ]
+    arrayTypesButton.addEventListener('click', () => loadExamples(arrayExamples))
 }
 
 if (specialTypesButton) {
-    specialTypesButton.addEventListener('click', () => loadExample("special"))
+    specialTypesButton.addEventListener('click', () => loadExamples([specialTypes()]))
 }
 
 let chosenExampleType: { title: string, explanation: string, code: string };
@@ -38,10 +49,10 @@ function loadExample(exampleType: string){
             chosenExampleType = basicTypesNumber();
             break;
         case "array":
-            chosenExampleType = arrayTypesExample();
+            chosenExampleType = arrayTypes();
             break;
         case "special":
-            chosenExampleType = specialTypesExample();
+            chosenExampleType = specialTypes();
             break;
         default:
             chosenExampleType = basicTypesNumber();
@@ -55,7 +66,31 @@ function loadExample(exampleType: string){
         ).value;
     }
 }
+ // Be able to load many exmaples passed in as an array
+function loadExamples(examples: any[]){
+    // get a reference to the example card container
+    const container = document. querySelector('#exampleContainer');
+    if (!container) {
+        console.error("could not find examples container");
+        return;
+    }
  
+
+    container.innerHTML = examples.map((example) => `
+<h2 class="card-title">${example.title}</h2>
+<p class="cardExplanation">${example.explanation}</p>
+<div id="exampleBlock" class="bg-base-content px-4 rounded-lg">
+<pre class=" text-slate-200">
+<code id="cardCode" class="text-wrap">
+${hljs.highlight(example.code, { language: 'typescript' }).value}
+</code>
+</pre> 
+</div>
+`).join('');
+}
+
+
+
 /*
 <h2 class="card-title">Code Example</h2>
 <p class="cardExplanation"></p>

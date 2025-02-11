@@ -265,3 +265,20 @@ function processShape(shape: Shape) {
 
 /*------------------------------------------------------------------------*/
 
+// Boolean Type Examples
+let isActive: boolean = true;
+
+// Boolean expressions
+let isGreater: boolean = 10 > 5;
+let isEqual: boolean = "hello" === "hello";
+
+// Boolean in functions
+function isEven(num: number): boolean {
+    return num % 2 === 0;
+}
+
+// Boolean as function parameters
+function toggleStatus(currentStatus: boolean): boolean {
+    return !currentStatus;
+}
+

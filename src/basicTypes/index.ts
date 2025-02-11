@@ -1,4 +1,4 @@
-import{basicTypesExample, arrayTypesExample, specialTypesExample} from './basic-types';
+import { basicTypesNumber, basicTypesString, arrayTypesExample, specialTypesExample } from "../examples/examples";
 import hljs from 'highlight.js/lib/core';
 import typescript from 'highlight.js/lib/languages/typescript';
 
@@ -30,12 +30,12 @@ if (specialTypesButton) {
 
 let chosenExampleType: { title: string, explanation: string, code: string };
 
-//Generic function to load the example content
+//Have loadExample function load the importated examples functions
 function loadExample(exampleType: string){
     console.log(`loading example content for ${exampleType} types`);
     switch(exampleType){
         case "basic":
-            chosenExampleType = basicTypesExample();
+            chosenExampleType = basicTypesNumber();
             break;
         case "array":
             chosenExampleType = arrayTypesExample();
@@ -44,7 +44,7 @@ function loadExample(exampleType: string){
             chosenExampleType = specialTypesExample();
             break;
         default:
-            chosenExampleType = basicTypesExample();
+            chosenExampleType = basicTypesNumber();
     }
     if (cardTitle && cardExplanation && cardCode) {
         cardTitle.textContent = chosenExampleType.title;
@@ -55,4 +55,18 @@ function loadExample(exampleType: string){
         ).value;
     }
 }
-
+ 
+/*
+<h2 class="card-title">Code Example</h2>
+<p class="cardExplanation"></p>
+<div id="exampleBlock" class="bg-base-content px-4 rounded-lg">
+<pre class=" text-slate-200">
+<code id="cardCode">
+<pre>
+<code id="cardCode">
+const myName: string = "Taylor";
+const myAge: number = "25";
+const myAge: number = "25";
+</code>
+</pre> 
+</div>*/

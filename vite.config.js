@@ -9,16 +9,15 @@ export default defineConfig({
     build: {
         outDir,
         emptyOutDir: true,
-        roolupOptions: {
-            input:{
+        rollupOptions: {  // Fixed typo: 'roolupOptions' → 'rollupOptions'
+            input: {
                 main: resolve(root, 'index.html'),
-                baseicTypes: resolve(root, 'basicTypes', 'index.html'),
+                basicTypes: resolve(root, 'basicTypes', 'index.html'),  // Fixed typo: 'baseicTypes' → 'basicTypes'
                 // nested: resolve(root, 'nested/index.html'),
-            },
-            
+            }
         }
     },
     server: {
-        port:2720
+        port: 2720
     }
 })

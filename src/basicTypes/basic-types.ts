@@ -112,9 +112,6 @@ let employeeTuple: [number, string, boolean] = [1, 'Alice', true];
 console.log(person[0]);    // Output: John (string)
 console.log(person[1]);    // Output: 25 (number)
 
-// Wrong way - Type Error
-// person[3] = 'Bob';     // Error: Tuple type '[string, number]' has no element at index '3'
-// person[1] = 'test';    // Error: Type 'string' is not assignable to type 'number'
 
 
 /*------------------------------------------------------------------------*/

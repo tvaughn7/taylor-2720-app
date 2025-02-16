@@ -90,18 +90,3 @@ ${hljs.highlight(example.code, { language: 'typescript' }).value}
 }
 
 
-
-/*
-<h2 class="card-title">Code Example</h2>
-<p class="cardExplanation"></p>
-<div id="exampleBlock" class="bg-base-content px-4 rounded-lg">
-<pre class=" text-slate-200">
-<code id="cardCode">
-<pre>
-<code id="cardCode">
-const myName: string = "Taylor";
-const myAge: number = "25";
-const myAge: number = "25";
-</code>
-</pre> 
-</div>*/

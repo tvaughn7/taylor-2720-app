@@ -1,4 +1,4 @@
-import { basicTypesNumber, basicTypesString, arrayTypes, specialTypes, basicTypesBoolean, tupleTypes } from "../examples/examples";
+import { basicTypesNumber, basicTypesString, arrayTypes, specialTypes, basicTypesBoolean, tupleTypes, nullTypes } from "../examples/basicTypes/examples";
 import hljs from 'highlight.js/lib/core';
 import typescript from 'highlight.js/lib/languages/typescript';
 
@@ -36,7 +36,11 @@ if (arrayTypesButton) {
 }
 
 if (specialTypesButton) {
-    specialTypesButton.addEventListener('click', () => loadExamples([specialTypes()]))
+    const specialExamples = [
+        specialTypes(),
+        nullTypes()
+    ]
+    specialTypesButton.addEventListener('click', () => loadExamples(specialExamples))
 }
 
 let chosenExampleType: { title: string, explanation: string, code: string };

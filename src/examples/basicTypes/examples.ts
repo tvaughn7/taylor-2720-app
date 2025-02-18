@@ -23,7 +23,7 @@ let diff = decimal - hex;
 export function basicTypesString(){
     return{
         title: "String Types in TypeScript",
-        explanation: "String types...",
+        explanation: "String types in TypeScript represent textual data. They can be created using single quotes (''), double quotes (\"\"), or template literals (``) for multi-line strings and string interpolation.",
         code: `
 
  // Eample of string type
@@ -31,7 +31,11 @@ let firstName: string = 'John';
 let lastName: string = 'Doe';
 let fullName: string = firstName + ' ' + lastName;
 
-    export function arrayTypesExample(){
+`
+    }
+}
+
+export function arrayTypesExample(){
     return{
         title: "Array Types in TypeScript",
         explanation: "This section covers array types in TypeScript. Here you see examples of the number and string data types.",
@@ -68,7 +72,18 @@ export function specialTypes(){
     return{
         title: "Special Types in TypeScript",
         explanation: "This section covers special types in TypeScript. Here you see examples of the number and string data types.",
-        code: `// Example of special types`
+        code: `// The any type in TypeScript should be used sparingly as it bypasses TypeScript's type checking. Here's an explanation with examples to add to your basic-types.ts file:
+
+// The 'any' type
+let flexibleVar: any = 4;
+flexibleVar = "string";    // OK
+flexibleVar = false;       // OK
+flexibleVar = {};         // OK
+
+// Example where 'any' is useful - working with dynamic data
+function processExternalData(data: any) {
+    console.log(data.someProperty); // No TypeScript errors, but might fail at runtime
+}`
     }
 }
 
@@ -108,5 +123,39 @@ console.log(person[1]);    // Output: 25 (number)
 // person[3] = 'Bob';     // Error: Tuple type '[string, number]' has no element at index '3'
 // person[1] = 'test';    // Error: Type 'string' is not assignable to type 'number'
 `
+    }
+}
+
+// function for null types
+export function nullTypes(){
+    return{
+        title: "Null Types in TypeScript",
+        explanation: "This section covers null types in TypeScript. Here you see examples of the number and string data types.",
+        code: `// // The void type
+// Used primarily for functions that don't return a value
+function logMessage(message: string): void {
+    console.log(message);
+    // No return statement needed
+}
+
+// void in arrow functions
+const printName = (name: string): void => {
+    console.log('Hello, ' + name);
+}
+
+// void variable (rarely used)
+let unusable: void = undefined;
+// Note: You can only assign undefined or null (if strictNullChecks is false)
+
+// Example of incorrect usage
+// let voidVar: void = "Hello";  // Error: Type 'string' is not assignable to type 'void'
+
+// Common use case with callbacks
+function processWithCallback(value: number, callback: () => void) {
+    // Process the value
+    console.log(value);
+    // Execute callback
+    callback();
+}`   
     }
 }

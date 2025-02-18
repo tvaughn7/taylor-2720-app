@@ -12,7 +12,8 @@ export default defineConfig({
         rollupOptions: {  // Fixed typo: 'roolupOptions' → 'rollupOptions'
             input: {
                 main: resolve(root, 'index.html'),
-                basicTypes: resolve(root, 'basicTypes', 'index.html'),  // Fixed typo: 'baseicTypes' → 'basicTypes'
+                basicTypes: resolve(root, 'basicTypes', 'index.html'), 
+                function: resolve(root, 'functionTypes', 'index.html') // Fixed typo: 'baseicTypes' → 'basicTypes'
                 // nested: resolve(root, 'nested/index.html'),
             }
         }

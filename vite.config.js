@@ -13,7 +13,8 @@ export default defineConfig({
             input: {
                 main: resolve(root, 'index.html'),
                 basicTypes: resolve(root, 'basicTypes', 'index.html'), 
-                function: resolve(root, 'functionTypes', 'index.html') // Fixed typo: 'baseicTypes' → 'basicTypes'
+                function: resolve(root, 'functionTypes', 'index.html'), // Fixed typo: 'baseicTypes' → 'basicTypes'
+                interfaces: resolve(root, 'interfaces', 'index.html'),
                 // nested: resolve(root, 'nested/index.html'),
             }
         }

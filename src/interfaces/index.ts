@@ -12,6 +12,42 @@ const [basicCSS, basicHTML, glexbox, grid] = blocksObject
 // example of destructuring an object into its keys 
 const { meta, challenges } = basicCSS;
 
+const navBar = document.querySelector('.navbar #navBarCenter')
+const navList = document.querySelector('#navList')
+
+const buildTopNavFromJSON = (blocksArray: any) => {
+    blocksArray.forEach((block: any) => {
+        const navItem = document.createElement('a');
+        navItem.classList.add('btn');
+        navItem.href = block.meta && block.meta.name ? `#${block.meta.name}` : '#';
+        navItem.innerText = block.meta.name;
+
+    navItem.addEventListener('click', (event: any) => {
+        // find the block that matches the navItem that was clicked
+        const blockToDisplay = blocksArray.find((block:any) => 
+        block.meta.name === event.target.innerText);
+        //console.log(blockToDisplay);
+        // build the left nav from the block
+        buildLeftNavfromJSON(blockToDisplay);
+    })
+
+        navBar?.appendChild(navItem);
+    })
+
+}
+
+const buildLeftNavfromJSON = (block: any) => {
+    console.log(block.meta.name)
+    block.challenges.forEach((challenge: any) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = challenge.title;
+        listItem.classList.add("btn","btn-ghost", "list-row",);
+
+        navList?.appendChild(listItem);
+    })
+}
+
+buildTopNavFromJSON(blocksObject);
 
 
 

@@ -1,4 +1,5 @@
 import curriculum from '../data/curriculum.json';
+import { CodeSnippet } from '../types/codeSnippet';
 
 const blocks = curriculum["responsive-web-design"].blocks;
 console.log(blocks);
@@ -14,6 +15,7 @@ const { meta, challenges } = basicCSS;
 
 const navBar = document.querySelector('.navbar #navBarCenter')
 const navList = document.querySelector('#navList')
+const snippetDisplay = document.querySelector('#snippetDisplay')
 
 const buildTopNavFromJSON = (blocksArray: any) => {
     blocksArray.forEach((block: any) => {
@@ -38,13 +40,48 @@ const buildTopNavFromJSON = (blocksArray: any) => {
 
 const buildLeftNavfromJSON = (block: any) => {
     console.log(block.meta.name)
+
+    // clear out the left nav
+    while (navList?.firstChild) {
+        navList.removeChild(navList.firstChild);
+    }
+
     block.challenges.forEach((challenge: any) => {
         const listItem = document.createElement('li');
-        listItem.textContent = challenge.title;
-        listItem.classList.add("btn","btn-ghost", "list-row",);
+        
+        listItem.classList.add("list-row",);
+        const listDiv = document.createElement('div');
+        listDiv.classList.add("btn", "btn-ghost");
+        listDiv.textContent = challenge.title;
+        listDiv.addEventListener('click', (event: any) => {
+           buildSnippetDisplay(challenge);
+     })
 
+        listItem.appendChild(listDiv);
         navList?.appendChild(listItem);
     })
+}
+
+const buildSnippetDisplay = (challenge: CodeSnippet) =>{
+    // make some DOM elements to display the challenge
+
+    while (snippetDisplay?.firstChild) {
+        snippetDisplay.removeChild(snippetDisplay.firstChild);
+    }
+
+    const title = document.createElement('h2');
+    title.textContent = challenge.title;
+    title.classList.add('text-2xl', 'font-bold', 'text-center', 'mb-4');
+    const description = document.createElement('div');
+    description.innerHTML = challenge.description as string;
+
+    const instructions = document.createElement('div');
+    instructions.innerHTML = challenge.instructions as string;
+    instructions.classList.add('mb-4');
+
+    snippetDisplay?.appendChild(title);
+    snippetDisplay?.appendChild(description);
+    snippetDisplay?.appendChild(instructions);
 }
 
 buildTopNavFromJSON(blocksObject);

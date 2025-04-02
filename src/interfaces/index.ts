@@ -76,7 +76,7 @@ const buildLeftNavfromJSON = (block: any) => {
         
         listDiv.textContent = challenge.title;
         
-        listDiv.addEventListener('click', (event: any) => {
+        listDiv.addEventListener('click', () => {
             // Remove active state from all items
             navList?.querySelectorAll('.btn-ghost').forEach(btn => {
                 btn.classList.remove('btn-active', 'bg-primary/10');

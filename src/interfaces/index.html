@@ -27,19 +27,19 @@
           </div>
     </header>
     <main class="flex w-screen">
-        <nav id="navbar" class="h-screen bg-base-200 w-1/4 p-2 " style="min-width: 250px;">
-            <ul id="navList" class="list">
-               
-            </ul>
-        </nav>
-            <!--insert <li> elements here via our typescript code-->
-            </ul>
-        </nav>
-        <selection id="snippetDisplay" class="flex flex-col">
-            <!-- Use this area to display code camp challenges-->
-        </selection>
-
-
+        <div class="flex min-h-screen">
+            <!-- Left Navigation -->
+            <div class="w-72 overflow-y-auto h-screen sticky top-0">
+                <ul id="navList" class="menu bg-base-200 p-2">
+                    <!-- Nav items will be populated here -->
+                </ul>
+            </div>
+            
+            <!-- Right Content Area -->
+            <div id="snippetDisplay" class="flex-1 overflow-y-auto p-4">
+                <!-- Snippets will be displayed here -->
+            </div>
+        </div>
     </main>
     <footer class="text-center ">
         <p>

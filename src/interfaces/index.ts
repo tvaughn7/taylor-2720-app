@@ -17,6 +17,20 @@ const navBar = document.querySelector('.navbar #navBarCenter')
 const navList = document.querySelector('#navList')
 const snippetDisplay = document.querySelector('#snippetDisplay')
 
+// Add a helper function to handle scroll alignment
+const scrollToElement = (element: HTMLElement, targetElement: HTMLElement) => {
+    const elementRect = element.getBoundingClientRect();
+    const targetRect = targetElement.getBoundingClientRect();
+    
+    // Calculate the offset to align the snippet with the clicked nav item
+    const offset = elementRect.top - targetRect.top;
+    
+    targetElement.scrollTo({
+        top: targetElement.scrollTop + offset,
+        behavior: 'smooth'
+    });
+};
+
 const buildTopNavFromJSON = (blocksArray: any) => {
     blocksArray.forEach((block: any) => {
         const navItem = document.createElement('a');
@@ -48,41 +62,132 @@ const buildLeftNavfromJSON = (block: any) => {
 
     block.challenges.forEach((challenge: any) => {
         const listItem = document.createElement('li');
+        listItem.classList.add("list-row", "p-0", "relative");
         
-        listItem.classList.add("list-row",);
         const listDiv = document.createElement('div');
-        listDiv.classList.add("btn", "btn-ghost");
+        listDiv.classList.add(
+            "btn",
+            "btn-ghost",
+            "w-64",
+            "h-24",
+            "transition-all",
+            "duration-200"
+        );
+        
         listDiv.textContent = challenge.title;
+        
         listDiv.addEventListener('click', (event: any) => {
-           buildSnippetDisplay(challenge);
-     })
+            // Remove active state from all items
+            navList?.querySelectorAll('.btn-ghost').forEach(btn => {
+                btn.classList.remove('btn-active', 'bg-primary/10');
+            });
+            
+            // Add active state to clicked item
+            listDiv.classList.add('btn-active', 'bg-primary/10');
+            
+            // Build and show the snippet
+            const snippetElement = buildSnippetDisplay(challenge);
+            
+            if (snippetElement && listDiv) {
+                // Use requestAnimationFrame to wait for the DOM update
+                requestAnimationFrame(() => {
+                    scrollToElement(listDiv, snippetDisplay as HTMLElement);
+                });
+            }
+        });
 
         listItem.appendChild(listDiv);
         navList?.appendChild(listItem);
-    })
-}
+    });
+};
 
-const buildSnippetDisplay = (challenge: CodeSnippet) =>{
-    // make some DOM elements to display the challenge
+const buildSnippetDisplay = (challenge: CodeSnippet): HTMLElement | null => {
+    if (!snippetDisplay) return null;
 
-    while (snippetDisplay?.firstChild) {
+    while (snippetDisplay.firstChild) {
         snippetDisplay.removeChild(snippetDisplay.firstChild);
     }
 
+    const card = document.createElement('div');
+    card.classList.add(
+        'card',
+        'bg-base-100',
+        'shadow-xl',
+        'mx-auto',
+        'w-full',
+        'max-w-4xl',
+        'transition-all',
+        'duration-300',
+        'opacity-0', // Start invisible
+        'translate-x-4', // Start slightly offset
+        'mb-4' // Add margin bottom for spacing between cards
+    );
+
+    // Card body
+    const cardBody = document.createElement('div');
+    cardBody.classList.add('card-body');
+
+    // Title with badge
+    const titleContainer = document.createElement('div');
+    titleContainer.classList.add('flex', 'items-center', 'gap-4', 'mb-6');
+
     const title = document.createElement('h2');
     title.textContent = challenge.title;
-    title.classList.add('text-2xl', 'font-bold', 'text-center', 'mb-4');
-    const description = document.createElement('div');
-    description.innerHTML = challenge.description as string;
+    title.classList.add(
+        'card-title',
+        'text-3xl',
+        'font-bold',
+        'text-primary'
+    );
 
-    const instructions = document.createElement('div');
-    instructions.innerHTML = challenge.instructions as string;
-    instructions.classList.add('mb-4');
+    const badge = document.createElement('div');
+    badge.classList.add('badge', 'badge-secondary', 'badge-lg');
+    badge.textContent = 'Challenge';
 
-    snippetDisplay?.appendChild(title);
-    snippetDisplay?.appendChild(description);
-    snippetDisplay?.appendChild(instructions);
-}
+    titleContainer.appendChild(title);
+    titleContainer.appendChild(badge);
+
+    // Description section
+    const descriptionContainer = document.createElement('div');
+    descriptionContainer.classList.add(
+        'prose',
+        'prose-lg',
+        'mb-8',
+        'p-6',
+        'bg-base-200',
+        'rounded-xl'
+    );
+    descriptionContainer.innerHTML = challenge.description as string;
+
+    // Instructions section
+    const instructionsContainer = document.createElement('div');
+    instructionsContainer.classList.add(
+        'alert',
+        'alert-info',
+        'shadow-lg',
+        'mt-4'
+    );
+
+    const instructionsContent = document.createElement('div');
+    instructionsContent.classList.add('prose', 'prose-lg', 'max-w-none');
+    instructionsContent.innerHTML = challenge.instructions as string;
+
+    instructionsContainer.appendChild(instructionsContent);
+
+    // Assemble the card
+    cardBody.appendChild(titleContainer);
+    cardBody.appendChild(descriptionContainer);
+    cardBody.appendChild(instructionsContainer);
+    card.appendChild(cardBody);
+    snippetDisplay.appendChild(card);
+
+    // Trigger animation after append
+    requestAnimationFrame(() => {
+        card.classList.remove('opacity-0', 'translate-x-4');
+    });
+
+    return card;
+};
 
 buildTopNavFromJSON(blocksObject);
 

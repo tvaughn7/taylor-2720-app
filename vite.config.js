@@ -16,6 +16,7 @@ export default defineConfig({
                 basicTypes: resolve(root, 'basicTypes', 'index.html'), 
                 function: resolve(root, 'functionTypes', 'index.html'), // Fixed typo: 'baseicTypes' → 'basicTypes'
                 interfaces: resolve(root, 'interfaces', 'index.html'),
+                classes: resolve(root, 'classes', 'index.html')
                 // nested: resolve(root, 'nested/index.html'),
             }
         }
